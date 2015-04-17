@@ -13,9 +13,9 @@ include 'connect_db.php'; ?>
 	<tr>
 	<?php
 	$student_number = $_COOKIE['ID_my_site'];
-	$student_items = mysql_query("SELECT * FROM Progress WHERE '$student_number' = student_number ");
+	$student_items = mysqli_query($connection, "SELECT * FROM Progress WHERE '$student_number' = student_number ");
 
-while($student = mysql_fetch_array($student_items))
+while($student = mysqli_fetch_array($student_items))
   {
  if ($student['12a1']==1){ $a1 = "#F5F5A2"; }
   else if ($student['12a1']==2) {$a1 = "#CEFACD"; }

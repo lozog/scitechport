@@ -10,7 +10,7 @@ include("connect_db.php");
 
 // connect to the scitechport database in the server
 
-mysql_select_db("scitechport", $con);
+//mysql_select_db("scitechport", $con);
 
 
 
@@ -74,7 +74,7 @@ mysql_select_db("scitechport", $con);
 
 	//progress information for each individual file
 
-    $progress_data = mysql_query("SELECT * FROM Progress WHERE student_number = '$student_number'");
+    $progress_data = mysqli_query($connection, "SELECT * FROM Progress WHERE student_number = '$student_number'");
 
     //If the file is blank, it displays default text in the editor, otherwise it displays the data from the file
 
@@ -88,7 +88,7 @@ mysql_select_db("scitechport", $con);
 
 		
 
-		mysql_query("UPDATE Progress SET 11b2 = 0 WHERE student_number = '$student_number'");
+		mysqli_query($connection, "UPDATE Progress SET 11b2 = 0 WHERE student_number = '$student_number'");
 
     }
 
@@ -98,7 +98,7 @@ mysql_select_db("scitechport", $con);
 
 		$data = fread($fh, filesize($myFile));
 
-		mysql_query("UPDATE Progress SET 11b2 = 1 WHERE student_number = '$student_number'");
+		//mysqli_query($connection, "UPDATE Progress SET 11b2 = 1 WHERE student_number = '$student_number'");
 
         
 
@@ -127,13 +127,17 @@ mysql_select_db("scitechport", $con);
 		</p>
 		<Input ID = "finishedsubmit" Type = "Submit" Name = "isDone" Value = "Mark as finished.">
 		<Input ID = "unfinishedsubmit" Type = "Submit" Name = "isNotDone" Value = "Mark as unfinished.">
+		<Input ID = "nochange" Type = "Submit" Name = "noChange" Value = "Go back.">
 		<?php
 		if (isset($_POST['isDone'])){
-			mysql_query("UPDATE Progress SET 11b1 = 2 WHERE student_number = '$student_number'");
+			mysqli_query($connection, "UPDATE Progress SET 11b1 = 2 WHERE student_number = '$student_number'");
 			echo '<script type="text/javascript"> window.location = "index.php" </script>';
 		}
 		if (isset($_POST['isNotDone'])){
-			mysql_query("UPDATE Progress SET 11b1 = 1 WHERE student_number = '$student_number'");
+			mysqli_query($connection, "UPDATE Progress SET 11b1 = 1 WHERE student_number = '$student_number'");
+			echo '<script type="text/javascript"> window.location = "index.php" </script>';
+		}
+		if (isset($_POST['noChange'])){
 			echo '<script type="text/javascript"> window.location = "index.php" </script>';
 		}
 		?>

@@ -1,26 +1,28 @@
 <?php
-#2014-06-12: updated for new MySQL server
+#2015-04-13: updated for new MySQL server
 
 
-$rot = 'Reebepbqr37';
+$rot = 'cbegsbyvbqopbaarpg95';
 
 
 
-
+$user = "lozogx12_db";
 
 $obfuscate = str_rot13($rot);
 
+$db = "lozogx12_portfoliopro";
 
 
-//Connect to the sql543560 database
 
-$con = mysql_connect("sql5.freesqldatabase.com", "sql543560", "aG5%fB3%");
+//Connect to the database
+
+$connection = mysqli_connect("localhost", $user, $obfuscate, $db);
 
 
 
 //Display an error message if the connection fails
 
-if (!$con)
+if (!$connection)
 
 {
 
@@ -32,7 +34,7 @@ if (!$con)
 
 // connect to the sql543560 database in the server
 
-	mysql_select_db("sql543560", $con);
+	#mysql_select_db("sql543560", $connection);
 
 
 
